@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CodeSense AI Workbench</title>
+    <style>
+      html,
+      body,
+      #root {
+        margin: 0;
+        width: 100%;
+        min-height: 100%;
+        background: #1e1e1e;
+      }
+
+      body {
+        font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs/loader.min.js"></script>
+    <script>
+      window.monacoReady = false;
+      if (typeof window.require !== "undefined" && window.require.config) {
+        window.require.config({
+          paths: {
+            vs: "https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs",
+          },
+        });
+        window.require(["vs/editor/editor.main"], function () {
+          window.monacoReady = true;
+          window.dispatchEvent(new Event("codesense-monaco-ready"));
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
